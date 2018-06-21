@@ -1,1 +1,3 @@
-直接用prebuilts中的交叉编译gcc编译
+基于Linux pwm-beeper驱动
+sample:
+    ./pwm_auto /dev/input/event0
