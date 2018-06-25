@@ -12,6 +12,8 @@
 
 #define MUSIC_NOTE_NUM              128
 
+static tNote note[128] = {0};
+static int devfd;
 
 // 演奏乐曲
 void musicPlay(int fd, const tNote note[]) 
@@ -33,17 +35,20 @@ void musicPlay(int fd, const tNote note[])
         write(fd, &event, sizeof(struct input_event));
         usleep(note[i].mTime * 1000); 
         i++; 
+        printf("play i:%d name:%d time:%d fd:%d\n", i, event.value, note[i].mTime, fd);
     } 
     event.value = 0000;
     write(fd, &event, sizeof(struct input_event));
 }
 
-tNote note[128] = {0};
 int main(int argc, char *argv[])
 {
     FILE *fp;
-    int devfd, version, ret;
     int i;
+    char tname[20];
+    int ttime;
+    int n;
+    const char *linestr;
 
     if (argc < 3)
     {
@@ -59,15 +64,11 @@ int main(int argc, char *argv[])
         perror("open dev fail!");
         return 1;
     }
+    printf("devname:%s fd:%d\n", argv[2], devfd);
 
     // load music
     for (i = 0; i < MUSIC_NOTE_NUM; i++)
     {
-        char tname[20];
-        int ttime;
-        int n;
-        char *linestr;
-
         linestr = freadline(fp);
         errno = 0;
         n = sscanf(linestr, "%s %d", tname, &ttime);
@@ -165,6 +166,10 @@ int main(int argc, char *argv[])
         else if (strcmp(tname, "H7") == 0)
         {
             note[i].mName = H7;
+        }
+        else
+        {
+            note[i].mName = 0;
         }
     }
     
