@@ -1,3 +1,12 @@
 基于Linux pwm-beeper驱动
-sample:
-    ./pwm_auto /dev/input/event0
+
+Compile
+
+$ git clone https://github.com/Dangku/pwm-beeper-test
+$ cd pwm-beeper-test
+$ cmake .
+$ make
+
+Test
+
+$ ./pwm_auto /dev/input/eventX     //pwm-beeper create a input device
