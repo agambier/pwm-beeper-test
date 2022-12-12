@@ -1,5 +1,7 @@
 基于Linux pwm-beeper驱动
 
+This is a fork of [pwm-beeper-test](https://github.com/Dangku/pwm-beeper-test) from (Dangku)[https://github.com/Dangku]. The source files has been modified so it can be built under the buildroot environnement.
+
 Compile
 
 $ git clone https://github.com/Dangku/pwm-beeper-test
