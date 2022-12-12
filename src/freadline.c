@@ -1,7 +1,8 @@
 #include "freadline.h"
 
+char a_line[_MAXLEN];
 char *freadline(FILE *stream)
-{    
+{
     int count = 0;
 
     /* 数组a_line最多只能存511个“有用”字符，此时最后一个存储单元存储了‘\0’*/

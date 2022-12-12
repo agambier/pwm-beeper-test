@@ -13,7 +13,7 @@
 #define _MAXLEN 512
 
 /*数组a_line用来存储读取的一行字符串*/
-char a_line[_MAXLEN];
+extern char a_line[_MAXLEN];
 
 /*函数freadline的参数stream是一个文件描述符，返回值为一个指向char类型的指针*/
 char *freadline(FILE *stream);
